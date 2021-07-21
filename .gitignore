@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+#folder
+target/
+.mvn/
+
+*.iml
+
 # Log file
 *.log
 
