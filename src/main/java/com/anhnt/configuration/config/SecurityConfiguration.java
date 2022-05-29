@@ -1,7 +1,7 @@
 package com.anhnt.configuration.config;
 
 import com.anhnt.common.domain.configuration.ResponseErrorConstant;
-import com.anhnt.common.domain.response.ResponseBody;
+import com.anhnt.common.domain.response.BodyEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -25,10 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .ignoringAntMatchers("/config/encrypt/**")
             .ignoringAntMatchers("/config/decrypt/**")
             .and().httpBasic().authenticationEntryPoint((HttpServletRequest req, HttpServletResponse res, AuthenticationException ex)->{
-            ResponseBody body = new ResponseBody();
-            body.setError(ResponseErrorConstant.UNAUTHORIZED);
             res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            objectMapper.writeValue(res.getWriter(),body);
+            objectMapper.writeValue(res.getWriter(),ResponseErrorConstant.UNAUTHORIZED.toResponseEntity().getBody());
         });
         super.configure(http); // Important
     }
