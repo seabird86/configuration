@@ -1,5 +1,29 @@
-# configuration
+# CONFIGURATION
  
+## KAFKA (For Spring bus)
+
+```
+docker run -d -p 2181:2181 --net=anh-network --name zookeeper --hostname localhost -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:latest
+
+docker run -d -p 9092:9092 --net=anh-network -p 29092:29092 --name kafka --hostname localhost -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:29092,EXTERNAL://localhost:9092, -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT -e KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT -e KAFKA_CFG_LISTENERS=CLIENT://:29092,EXTERNAL://:9092 -e ALLOW_PLAINTEXT_LISTENER=yes bitnami/kafka:latest
+```
+
+```
+docker run -d -p 8200:8200 --net=anh-network --name vault --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=token_id' -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' vault
+```
+
+## Visual Studio
+
+Plugins:
+- Spring dasdboard
+
+
+- User Setting:
+```
+docker.toolbarLocation=hide
+```
+
+
 
 
 - Endpoints:

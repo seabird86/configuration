@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ConfigurationApplication<configuration>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.anhnt.configuration.ConfigurationApplication",
+            "projectName": "configuration",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
